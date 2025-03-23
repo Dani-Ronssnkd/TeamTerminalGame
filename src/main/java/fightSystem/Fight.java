@@ -6,22 +6,22 @@ import entitySystem.player.Player;
 import java.util.Scanner;
 
 public class Fight {
-    Player player;
-    final Scanner userResponse = new Scanner(System.in);
+    private final Player player;
+    private final Scanner userResponse = new Scanner(System.in);
     public Fight(Player player,Entity enemy){
         this.player=player;
         fightWith(enemy);
     }
-    public void fightWith(Entity enemy){
+    private void fightWith(Entity enemy){
         System.out.println("Tu vida: " + this.player.getHealth());
         System.out.println("Vida de " + enemy.getName() + ": " + enemy.getHealth());
 
         while (player.getHealth()>0&&enemy.getHealth()>0){
             System.out.println("1 para atacar\n2 para dejar pasar turno");
-            switch (userResponse.nextInt()) {
-                case 1: attack(enemy);
+            switch (userResponse.nextLine().trim()) {
+                case "1": attack(enemy);
                 break;
-                case 2: enemyAttack(enemy);
+                case "2": enemyAttack(enemy);
                 break;
                 default:
                     System.out.println("Elige una opción válida");
